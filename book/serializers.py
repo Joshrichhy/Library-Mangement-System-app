@@ -3,6 +3,7 @@ from decimal import Decimal
 from rest_framework import serializers
 
 from book.models import Author, Book
+from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 
 
 # class AuthorSerializer(serializers.Serializer):
@@ -19,7 +20,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 class BookSerializer(serializers.ModelSerializer):
     # ways to secure relatioship
     # 1: nested serializing
-     # author = AuthorSerializer()
+    # author = AuthorSerializer()
     # 2: hyperlink related field
     # author = serializers.HyperlinkedRelatedField(
     #     queryset=Author.objects.all(), view_name='author-detail'
@@ -42,3 +43,8 @@ class BookSerializer(serializers.ModelSerializer):
         return price.price * Decimal(0.10)
 
     # language = serializers.CharField(max_length=15)
+
+
+class UserCreateSerializer(BaseUserCreateSerializer):
+    class Meta(BaseUserCreateSerializer.Meta):
+        fields = ['id', 'first_name', 'last_name', 'username', 'email', 'password']
