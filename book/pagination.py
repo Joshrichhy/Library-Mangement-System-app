@@ -7,3 +7,7 @@ class DefaultPagination(PageNumberPagination):
 
 class DefaultBookPagination(PageNumberPagination):
     page_size = 50
+
+
+class DefaultAuthorPagination(PageNumberPagination):
+    page_size = 50

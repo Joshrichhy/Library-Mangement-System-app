@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 from book.models import Author, Book
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
+from djoser.serializers import UserSerializer as CurrentUserCreateSerializer
 
 
 # class AuthorSerializer(serializers.Serializer):
@@ -48,3 +49,9 @@ class BookSerializer(serializers.ModelSerializer):
 class UserCreateSerializer(BaseUserCreateSerializer):
     class Meta(BaseUserCreateSerializer.Meta):
         fields = ['id', 'first_name', 'last_name', 'username', 'email', 'password']
+
+
+class CurrentUserSerializer(CurrentUserCreateSerializer):
+
+    class Meta(BaseUserCreateSerializer.Meta):
+        fields = ['id', 'first_name', 'last_name', 'username', 'email' ]

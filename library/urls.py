@@ -25,5 +25,5 @@ urlpatterns = [
     path('library/', include('book.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
-    path('demo/', include('demo.urls')),
+
 ]

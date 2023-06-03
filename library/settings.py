@@ -39,13 +39,15 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'book',
     'djoser',
-    'django_filters'
+    'django_filters',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -135,7 +137,9 @@ INTERNAL_IPS = [
 
 DJOSER = {
     'SERIALIZERS': {
-        'user_create': 'book.serializers.UserCreateSerializer'
+        'user_create': 'book.serializers.UserCreateSerializer',
+        'current_user': 'book.serializers.CurrentUserSerializer'
+
     }
 }
 
@@ -143,6 +147,10 @@ REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',),
+
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #      'rest_framework.permissions.IsAuthenticated',
+    # ]
 
     # To paginate globally
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
@@ -152,3 +160,8 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
 }
+
+CORS_ALLOWED_ORIGINS = [
+    'localhost:3000',
+    '127.0.0.1:3000'
+]

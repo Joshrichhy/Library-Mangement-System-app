@@ -30,3 +30,4 @@ class userAdmin(BaseUserAdmin):
             },
         ),
     )
+

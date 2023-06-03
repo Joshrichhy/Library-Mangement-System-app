@@ -1,4 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter
 from book.models import Author, Book
@@ -15,14 +16,17 @@ class AuthorViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = AuthorFilter
     search_fields = ['name', 'date_of_birth' ]
+    permission_classes = [IsAuthenticated]
 
 
 class BookViewSet(ModelViewSet):
+    permission_classes = [IsAdminUser]
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     pagination_class = DefaultBookPagination
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = BookFilter
+    search_fields = ['title', 'price']
 
 # class AuthorList(ListCreateAPIView):
 #     queryset = Author.objects.all()
