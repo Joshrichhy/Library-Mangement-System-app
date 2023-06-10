@@ -8,7 +8,11 @@ router = DefaultRouter()
 router.register('authors', views.AuthorViewSet)
 router.register('books', views.BookViewSet)
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('', include(router.urls)),
+    path('send_mail/', views.send_mail_function),
+    path('send_email/', views.email_function),
+    path('send_templatemail/', views.templatemail_function)]
 
 # urlpatterns = [
 #     path('', include(router.urls))

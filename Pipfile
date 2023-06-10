@@ -12,8 +12,12 @@ django-filter = "*"
 djoser = "*"
 djangorestframework-simplejwt = "*"
 django-cors-headers = "*"
+django-templated-mail = "*"
 
 [dev-packages]
+install = "*"
+pytest = "*"
+pytest-django = "*"
 
 [requires]
 python_version = "3.11"
